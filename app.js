@@ -6,8 +6,7 @@ const container = document.querySelector('.grocery-container');
 const list = document.querySelector('.grocery-list');
 const clearBtn = document.querySelector('.clear-btn');
 const submitBtn = document.querySelector('.submit-btn');
-// const editBtn = document.querySelector('.edit-btn');
-// const deleteBtn = document.querySelector('.delete-btn');
+
 // edit option
 let editElement;
 let editFlag = false;
@@ -41,6 +40,13 @@ function addItem(e) {
                 <i class="fas fa-trash"></i>
               </button>
             </div>`;
+    // get the edit and delete button
+    const deleteBtn = element.querySelector('.delete-btn');
+    const editBtn = element.querySelector('.edit-btn');
+
+    deleteBtn.addEventListener('click', deleteItem);
+    editBtn.addEventListener('click', editItem);
+
     // append to the list
     list.appendChild(element);
     //display alert
@@ -82,6 +88,27 @@ function clearItems() {
   container.classList.remove('show-container');
   displayAlert('empty list', 'danger');
   //localStorage.removeItem('list');
+}
+
+//delete function
+function deleteItem(e) {
+  const element = e.currentTarget.parentElement.parentElement;
+  const id = element.dataset.id;
+  list.removeChild(element);
+  if (list.children === 0) {
+    container.classList.remove('show-container');
+    displayAlert('item removed', 'danger');
+    setBackToDefault();
+    //remove from local storage
+    removeFromLocalStorage(id);
+  }
+
+  console.log('item is deleted');
+}
+
+//edit item
+function editItem() {
+  console.log('item is edited');
 }
 
 // set back to default

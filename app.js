@@ -133,10 +133,29 @@ function setBackToDefault() {
 
 // ****** LOCAL STORAGE **********
 function addToLocalStorage(id, value) {
-  console.log('added to local storage');
+  const grocery = {id, value};
+  let items = localStorage.getItem('list')
+    ? JSON.parse(localStorage.getItem('list'))
+    : [];
+  console.log(items);
+  items.push(grocery);
+  localStorage.setItem('list', JSON.stringify(items));
+  console.log(items);
+  //console.log(grocery);
+  //console.log('added to local storage');
 }
 
 function removeFromLocalStorage(id) {}
 
 function editLocalStorage(id, value) {}
+//localStorage API
+//setItem
+//getItem
+//removeItem
+//save as strings
+
+// localStorage.setItem('paradis', JSON.stringify(['PARFAIT', 'NSIMBA']));
+// const oranges = JSON.parse(localStorage.getItem('orange'));
+// localStorage.removeItem('oranges');
+
 // ****** SETUP ITEMS **********

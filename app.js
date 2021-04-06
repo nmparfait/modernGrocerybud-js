@@ -26,8 +26,21 @@ function addItem(e) {
   } else if (value && editFlag) {
     console.log('we are editing');
   } else {
-    console.log('empty value');
+    displayAlert('Empty value', 'danger');
   }
+}
+
+//function for alert
+
+function displayAlert(text, action) {
+  alert.textContent = text;
+  alert.classList.add(`alert-${action}`);
+
+  //remove alert
+  setTimeout(function () {
+    alert.textContent = '';
+    alert.classList.remove(`alert-${action}`);
+  }, 1000);
 }
 
 // ****** LOCAL STORAGE **********
